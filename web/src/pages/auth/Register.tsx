@@ -17,23 +17,26 @@ const defaultOptions = {
   },
 };
 
-export default function Login({}: Props): ReactElement {
+export default function Register({}: Props): ReactElement {
+  const name = useInputState();
+  const username = useInputState();
   const email = useInputState();
   const password = useInputState();
+  const confirmPassword = useInputState();
 
   const auth = useAuth();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await auth?.login(email.value, password.value);
+      //   await auth?.register(email.value, password.value);
     } catch (err: any) {
       // console.log(err.response);
     }
   };
 
   return (
-    <div className="auth auth--login page">
+    <div className="auth auth--register page">
       <aside className="left">
         <div className="lottie">
           <Lottie options={defaultOptions} height={400} width={400} />
@@ -43,16 +46,24 @@ export default function Login({}: Props): ReactElement {
         </h1>
       </aside>
       <aside className="right">
-        <h1>Login</h1>
+        <h1>Sign up</h1>
         <form onSubmit={handleSubmit}>
+          <section>
+            <Input state={name} name="Name" />
+            <Input loading state={username} name="Username" />
+          </section>
           <Input state={email} name="Email" />
-          <Input state={password} name="Password" type="password" />
-          <div className="forgot">
-            <span>Forgot your password?</span>
-          </div>
+          <section>
+            <Input state={password} name="Password" type="password" />
+            <Input
+              state={confirmPassword}
+              name="Confirm Password"
+              type="password"
+            />
+          </section>
           <Button title="Submit" />
           <div className="switch">
-            Not a member? <span>Join us!</span>
+            Already a member? <span>Log in</span>
           </div>
         </form>
       </aside>

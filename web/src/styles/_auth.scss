@@ -1,8 +1,12 @@
 .auth{
     display: flex;
+
     aside{
         flex: 1;
         padding: 5rem 3rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
 
     .left{
@@ -48,15 +52,16 @@
         }
     }
 
+    .button{
+        margin-top: 1rem;
+    }
+
+
     &--login{
         .input{
             margin: 3rem 0;
         }
-
-        .button{
-            margin-top: 1rem;
-        }
-
+     
         .forgot{
             font-size: 1.25rem;
             margin-top: -2rem;
@@ -70,6 +75,33 @@
             &:hover{
                 opacity: 1;
             }
+        }
+    }
+
+    &--register{
+
+        .input{
+            width: 100%;
+            margin: 1rem 0;
+
+            .input-container{
+                width: 100%;
+            }
+        }
+
+        section{
+            display: flex;
+
+            .input{
+                &:first-of-type{
+                    margin-right: 1rem;
+                }
+
+                &:last-of-type{
+                    margin-left: 1rem;
+                }
+            }
+            
         }
     }
 }
