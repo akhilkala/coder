@@ -1,12 +1,24 @@
 import mongoose, { Document } from 'mongoose';
+import bcrypt from 'bcrypt';
 
-export interface IUser extends Document {}
+export interface IUser extends Document {
+  name: string;
+  username: string;
+  email: string;
+  password: string;
+  verified: boolean;
+}
 
 const userSchema = new mongoose.Schema(
   {
     name: {
       type: String,
       required: true,
+    },
+    username: {
+      type: String,
+      required: true,
+      unique: true,
     },
     email: {
       type: String,
@@ -18,19 +30,32 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
       select: false,
+      minlength: 8,
     },
     verified: {
       type: Boolean,
       default: false,
     },
+    solveList: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Question',
+      },
+    ],
     bio: {
       type: String,
     },
     github: {
       type: String,
     },
+    // likedQuestions: [{}],
   },
   { timestamps: true }
 );
+
+userSchema.pre<IUser>('save', async function (next) {
+  if (!this.isModified('password')) next();
+  this.password = await bcrypt.hash(this.password, 10);
+});
 
 export default mongoose.model<IUser>('User', userSchema);

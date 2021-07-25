@@ -5,9 +5,12 @@ import { route } from '../config/utils';
 require('dotenv').config();
 
 export const register = route(async (req, res) => {
-  const { name, email, password } = req.body;
+  const { name, username, email, password } = req.body;
 
-  const exisitngUser = await User.findOne({ email });
+  const [exisitngUser, exisitngUsername] = await Promise.all([
+    User.findOne({ email }),
+    User.findOne({ username }),
+  ]);
 
   if (exisitngUser) {
     return res.status(401).json({
@@ -15,12 +18,17 @@ export const register = route(async (req, res) => {
     });
   }
 
-  const hashedPass = await bcrypt.hash(password, 10);
+  if (exisitngUsername) {
+    return res.status(401).json({
+      message: 'Username already in use',
+    });
+  }
 
   const user = await new User({
     name,
     email,
-    password: hashedPass,
+    username,
+    password,
   }).save();
 
   if (!process.env.SECRET) throw new Error('Environment Invalid');
@@ -44,7 +52,7 @@ export const login = route(async (req, res) => {
   const user = await User.findOne({ email }).select('+password');
 
   if (!user) {
-    return res.json({
+    return res.status(401).json({
       message: 'User does not exist',
     });
   }
@@ -63,15 +71,20 @@ export const login = route(async (req, res) => {
     });
   }
 
-  if (!process.env.SECRET) throw new Error('Environment Invalid');
+  if (!process.env.SECRET || !process.env.SECRET_2)
+    throw new Error('Environment Invalid');
 
-  const token = jwt.sign(
-    { id: user._id, name: user.name, email: user.email },
-    process.env.SECRET
-  );
+  const accessToken = jwt.sign({ user: user._id }, process.env.SECRET, {
+    expiresIn: '1m',
+  });
+
+  const refreshToken = jwt.sign({ user: user._id }, process.env.SECRET_2, {
+    expiresIn: '7d',
+  });
 
   res.status(200).send({
-    token,
+    accessToken,
+    refreshToken,
   });
 });
 

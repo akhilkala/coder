@@ -6,4 +6,4 @@ router.post('/register', register);
 router.post('/login', login);
 router.get('/verify/:token', verifyUser);
 
-module.exports = router;
+export default router;

@@ -1,0 +1,46 @@
+.page{
+    min-height: 100vh;
+}
+
+.input{
+    margin: 2rem 0;
+}
+
+.input-container{
+    position: relative;
+    width: 70%;
+
+    i{
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        font-size: 1.2rem;
+    }
+
+    input{
+        font-size: 1.65rem;
+        padding: .75rem;
+        border-radius: 5px;
+        width: 100%;
+        background-color: #212121;
+        color: #fefefe;
+        
+    }
+}
+
+.button{
+    padding: .7rem 1.5rem;
+    font-size: 1.15rem;
+    background-color: $text-color;
+    color: #212121;
+    border-radius: 5px;
+    font-weight: 600;
+    transition:  .2s opacity;
+
+    &:hover{
+    background-color: #fff;
+        color: #000;
+    }
+}

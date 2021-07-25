@@ -4,14 +4,23 @@ import cors from 'cors';
 import connectDB from './config/db';
 import { CustomError } from './errors';
 
-const app: Application = express();
-dotenv.config();
-app.use(cors());
-connectDB();
-
 const socketio = require('socket.io');
 import { Socket } from 'socket.io';
 import socketHandler from './socket';
+
+import authRouter from './routes/auth';
+import questionRouter from './routes/question';
+import userRouter from './routes/user';
+
+const app: Application = express();
+dotenv.config();
+app.use(cors());
+app.use(express.json());
+connectDB();
+
+app.use('/auth', authRouter);
+app.use('/questions', questionRouter);
+app.use('/user', userRouter);
 
 app.use('*', (req, res, next) => {
   res.status(404).json({
