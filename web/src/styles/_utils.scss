@@ -5,23 +5,46 @@
 .input{
     margin: 2rem 0;
 
+    
+
+
 
     h2{
         display: flex;
         align-items: center;
+        position: relative;
+        width: max-content;
     }
 
-    &--loading{
-        transform: translateY(-.68rem);
-        .input-container{
-            margin-top: -.5rem;
+    &.invalid{
+        input{
+            border: 1px solid #f006;
         }
     }
+
+
 }
 
 .input-loading{
-    transform: translateX(-.3rem);
+    position: absolute;
+    pointer-events: none;
+    right: -2.75rem;
+
 }
+
+.input-valid{
+    position: absolute;
+    pointer-events: none;
+    right: -2rem;
+}
+
+.input-invalid{
+    position: absolute;
+    pointer-events: none;
+    right: -2rem;
+}
+
+
 
 
 
@@ -47,6 +70,8 @@
         width: 100%;
         background-color: #212121;
         color: #fefefe;
+        border: 1px solid transparent;
+        transition: .15s all;
         
     }
 }

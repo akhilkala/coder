@@ -6,23 +6,24 @@ import Lottie from 'react-lottie';
 import animation from '../../assets/animations/auth.json';
 import Button from '../../components/Button';
 
-interface Props {}
+import { lottieOptions } from '../../utils/utilities';
+import { get } from '../../utils/requests';
 
-const defaultOptions = {
-  loop: true,
-  autoplay: true,
-  animationData: animation,
-  rendererSettings: {
-    preserveAspectRatio: 'xMidYMid slice',
-  },
-};
+interface Props {}
 
 export default function Register({}: Props): ReactElement {
   const name = useInputState();
+  //TODO: name and username checks
   const username = useInputState();
   const email = useInputState();
   const password = useInputState();
   const confirmPassword = useInputState();
+
+  const [usernameCheck, setUsernameCheck] = React.useState({
+    valid: false,
+    invalid: false,
+    loading: false,
+  });
 
   const auth = useAuth();
 
@@ -35,11 +36,31 @@ export default function Register({}: Props): ReactElement {
     }
   };
 
+  const checkAvailability = async () => {
+    if (!username.value) {
+      setUsernameCheck({
+        valid: false,
+        loading: false,
+        invalid: false,
+      });
+      return;
+    }
+
+    setUsernameCheck((prev) => ({ ...prev, loading: true }));
+    const res = await get(`/user/check/${username.value}`);
+
+    setUsernameCheck({
+      valid: !res.usernameTaken,
+      loading: false,
+      invalid: res.usernameTaken,
+    });
+  };
+
   return (
     <div className="auth auth--register page">
       <aside className="left">
         <div className="lottie">
-          <Lottie options={defaultOptions} height={400} width={400} />
+          <Lottie options={lottieOptions(animation)} height={400} width={400} />
         </div>
         <h1>
           Welcome to <span>Coder</span>
@@ -50,7 +71,14 @@ export default function Register({}: Props): ReactElement {
         <form onSubmit={handleSubmit}>
           <section>
             <Input state={name} name="Name" />
-            <Input loading state={username} name="Username" />
+            <Input
+              loading={usernameCheck.loading}
+              valid={usernameCheck.valid}
+              invalid={usernameCheck.invalid}
+              onBlur={checkAvailability}
+              state={username}
+              name="Username"
+            />
           </section>
           <Input state={email} name="Email" />
           <section>

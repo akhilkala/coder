@@ -22,6 +22,8 @@ app.use('/auth', authRouter);
 app.use('/questions', questionRouter);
 app.use('/user', userRouter);
 
+// TODO: https://www.npmjs.com/package/express-validator
+
 app.use('*', (req, res, next) => {
   res.status(404).json({
     message: 'Not Found',

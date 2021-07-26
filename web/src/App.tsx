@@ -7,6 +7,9 @@ import Register from './pages/auth/Register';
 import ResetPassword from './pages/auth/ResetPassword';
 import Home from './pages/Home';
 
+// https://react-spring.io/
+// https://www.framer.com/docs/animation/
+
 export default function App(): ReactElement {
   return (
     <React.Fragment>

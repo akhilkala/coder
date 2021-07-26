@@ -4,10 +4,12 @@ import {
   updateProfile,
   addQuestionToList,
   removeQuestionFromList,
+  checkUsernameAvailability,
 } from '../controllers/user';
 
 const router = express.Router();
 
+router.get('/check/:username', checkUsernameAvailability);
 router.get('/profile/:id', getProfilebyId);
 router.put('/profile/update', updateProfile);
 // router.patch('/share/increment/:id', incrementShare);

@@ -13,6 +13,7 @@ const questionSchema = new mongoose.Schema(
     },
     link: {
       type: String,
+      index: true,
     },
     description: {
       type: String,

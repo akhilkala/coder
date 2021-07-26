@@ -6,16 +6,9 @@ import Lottie from 'react-lottie';
 import animation from '../../assets/animations/auth.json';
 import Button from '../../components/Button';
 
-interface Props {}
+import { lottieOptions } from '../../utils/utilities';
 
-const defaultOptions = {
-  loop: true,
-  autoplay: true,
-  animationData: animation,
-  rendererSettings: {
-    preserveAspectRatio: 'xMidYMid slice',
-  },
-};
+interface Props {}
 
 export default function Login({}: Props): ReactElement {
   const email = useInputState();
@@ -36,7 +29,7 @@ export default function Login({}: Props): ReactElement {
     <div className="auth auth--login page">
       <aside className="left">
         <div className="lottie">
-          <Lottie options={defaultOptions} height={400} width={400} />
+          <Lottie options={lottieOptions(animation)} height={400} width={400} />
         </div>
         <h1>
           Welcome to <span>Coder</span>

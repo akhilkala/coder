@@ -1,9 +1,27 @@
 import { route } from '../config/utils';
+import User from '../models/User';
 
-export const getProfilebyId = route((req, res) => {});
+export const checkUsernameAvailability = route(async (req, res) => {
+  const { username } = req.params;
 
-export const updateProfile = route((req, res) => {});
+  // TODO: Change
+  if (!username) throw new Error('Illegal req');
 
-export const addQuestionToList = route((req, res) => {});
+  const existingUser = await User.findOne({ username });
 
-export const removeQuestionFromList = route((req, res) => {});
+  res.status(200).json({
+    usernameTaken: !!existingUser,
+  });
+});
+
+export const getProfilebyId = route(async (req, res) => {});
+
+export const updateProfile = route(async (req, res) => {});
+
+export const addQuestionToList = route(async (req, res) => {});
+
+export const removeQuestionFromList = route(async (req, res) => {});
+
+export const addFreind = route(async (req, res) => {});
+
+export const removeFreind = route(async (req, res) => {});

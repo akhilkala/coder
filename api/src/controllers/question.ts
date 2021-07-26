@@ -16,6 +16,16 @@ export const postQuestion = route(async (req: Req, res) => {
   // TODO: Change
   if (!link) throw new Error('Illegal req');
 
+  const existingQuestion = await Question.findOne({ link });
+
+  // TODO: make sure to put questions
+  // which keep coming to the top
+  if (existingQuestion) {
+    return res.status(409).json({
+      message: 'Question already exists',
+    });
+  }
+
   const question = await new Question({
     name,
     link,

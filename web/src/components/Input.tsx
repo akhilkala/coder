@@ -1,8 +1,12 @@
 import React, { ReactElement } from 'react';
 import { InputState } from '../hooks/useInputState';
+import cn from 'classnames';
 import Lottie from 'react-lottie';
 import loadingAnimation from '../assets/animations/loading.json';
 import tickAnimation from '../assets/animations/tick.json';
+import crossAnimation from '../assets/animations/cross.json';
+
+import { lottieOptions } from '../utils/utilities';
 
 interface Props {
   state: InputState;
@@ -12,16 +16,9 @@ interface Props {
   name: string;
   loading?: boolean;
   valid?: boolean;
+  invalid?: boolean;
+  onBlur?: (e: any) => void;
 }
-
-const defaultOptions = (animation: any) => ({
-  loop: true,
-  autoplay: true,
-  animationData: animation,
-  rendererSettings: {
-    preserveAspectRatio: 'xMidYMid slice',
-  },
-});
 
 export default function Input({
   state,
@@ -31,19 +28,39 @@ export default function Input({
   name,
   loading = false,
   valid = false,
+  invalid = false,
+  onBlur,
 }: Props): ReactElement {
   const [seen, setSeen] = React.useState(false);
 
   return (
-    <div className={!loading ? 'input' : 'input input--loading'}>
+    <div className={cn('input', { loading, valid, invalid })}>
       <h2 className="input-title">
         {name}
         {loading && (
           <span className="input-loading">
             <Lottie
-              options={defaultOptions(loadingAnimation)}
+              options={lottieOptions(loadingAnimation)}
               height={50}
               width={50}
+            />
+          </span>
+        )}
+        {valid && (
+          <span className="input-valid">
+            <Lottie
+              options={lottieOptions(tickAnimation, false)}
+              height={25}
+              width={25}
+            />
+          </span>
+        )}
+        {invalid && (
+          <span className="input-invalid">
+            <Lottie
+              options={lottieOptions(crossAnimation, false)}
+              height={25}
+              width={25}
             />
           </span>
         )}
@@ -63,6 +80,7 @@ export default function Input({
           placeholder={placeholder}
           className={className || ''}
           autoComplete="off"
+          onBlur={onBlur}
         />
       </div>
     </div>
