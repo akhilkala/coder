@@ -34,7 +34,7 @@ export const useAuth = () => {
 };
 
 export default function AuthProvider({ children }: Children): ReactElement {
-  const [user, setUser] = useState<Nullable<User> | any>(null);
+  const [user, setUser] = useState<Nullable<User> | any>(true);
   const [loading, setLoading] = useState<Boolean>(true);
   // const loading = useToggle()
 
