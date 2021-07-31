@@ -6,7 +6,7 @@ import Button from './Button';
 
 export default class ErrorBoundary extends Component {
   state = {
-    error: true,
+    error: false,
   };
 
   static getDerivedStateFromError(error: Error) {
@@ -15,6 +15,7 @@ export default class ErrorBoundary extends Component {
 
   componentDidCatch(error: Error, errorInfo: any) {
     // TODO: API request to log error somewhere
+    console.log(error);
   }
 
   render() {
