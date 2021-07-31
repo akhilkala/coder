@@ -9,50 +9,51 @@ export interface IUser extends Document {
   verified: boolean;
 }
 
-const userSchema = new mongoose.Schema(
-  {
-    name: {
-      type: String,
-      required: true,
-    },
-    username: {
-      type: String,
-      required: true,
-      unique: true,
-      index: true,
-    },
-    email: {
-      type: String,
-      required: true,
-      validate:
-        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-    },
-    password: {
-      type: String,
-      required: true,
-      select: false,
-      minlength: 8,
-    },
-    verified: {
-      type: Boolean,
-      default: false,
-    },
-    solveList: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Question',
-      },
-    ],
-    bio: {
-      type: String,
-    },
-    github: {
-      type: String,
-    },
-    // likedQuestions: [{}],
+const userSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
   },
-  { timestamps: true }
-);
+  username: {
+    type: String,
+    required: true,
+    unique: true,
+    index: true,
+  },
+  email: {
+    type: String,
+    required: true,
+    validate:
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+  },
+  password: {
+    type: String,
+    required: true,
+    select: false,
+    minlength: 8,
+  },
+  verified: {
+    type: Boolean,
+    default: false,
+  },
+  solveList: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Question',
+    },
+  ],
+  bio: {
+    type: String,
+  },
+  github: {
+    type: String,
+  },
+  // likedQuestions: [{}],
+  createdAt: {
+    type: Date,
+    default: Date.now(),
+  },
+});
 
 userSchema.pre<IUser>('save', async function (next) {
   if (!this.isModified('password')) next();

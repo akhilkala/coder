@@ -1,6 +1,6 @@
 import express from 'express';
 import {
-  getProfilebyId,
+  getProfilebyUsername,
   updateProfile,
   addQuestionToList,
   removeQuestionFromList,
@@ -10,7 +10,7 @@ import {
 const router = express.Router();
 
 router.get('/check/:username', checkUsernameAvailability);
-router.get('/profile/:id', getProfilebyId);
+router.get('/profile/:username', getProfilebyUsername);
 router.put('/profile/update', updateProfile);
 // router.patch('/share/increment/:id', incrementShare);
 // router.patch('/like/:id', like);

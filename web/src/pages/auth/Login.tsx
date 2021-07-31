@@ -7,6 +7,7 @@ import animation from '../../assets/animations/auth.json';
 import Button from '../../components/Button';
 
 import { lottieOptions } from '../../utils/utilities';
+import { useToasts } from 'react-toast-notifications';
 
 interface Props {}
 
@@ -14,14 +15,17 @@ export default function Login({}: Props): ReactElement {
   const email = useInputState();
   const password = useInputState();
 
+  const [error, setError] = React.useState('');
+  const { addToast } = useToasts();
   const auth = useAuth();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    //TODO: prevent spam
     try {
       await auth?.login(email.value, password.value);
     } catch (err: any) {
-      // console.log(err.response);
+      setError(err.response.data.message);
     }
   };
 
@@ -38,6 +42,7 @@ export default function Login({}: Props): ReactElement {
       <aside className="right">
         <h1>Login</h1>
         <form onSubmit={handleSubmit}>
+          {!!error && <div className="error">{error}</div>}
           <Input state={email} name="Email" />
           <Input state={password} name="Password" type="password" />
           <div className="forgot">

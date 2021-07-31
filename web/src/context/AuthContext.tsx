@@ -10,6 +10,7 @@ import { Nullable, User, Children } from '../utils/types';
 import { get, post, put } from '../utils/requests';
 import { useHistory, useLocation } from 'react-router-dom';
 import useToggle from '../hooks/useToggle';
+import { useToasts } from 'react-toast-notifications';
 
 // import { useToasts } from 'react-toast-notifications';
 
@@ -34,13 +35,14 @@ export const useAuth = () => {
 };
 
 export default function AuthProvider({ children }: Children): ReactElement {
-  const [user, setUser] = useState<Nullable<User> | any>(true);
+  const [user, setUser] = useState<Nullable<User>>(null);
   const [loading, setLoading] = useState<Boolean>(true);
+
   // const loading = useToggle()
 
   const history = useHistory();
 
-  //   const { addToast } = useToasts();
+  const { addToast } = useToasts();
 
   useEffect(() => {
     setLoading(false);
@@ -54,7 +56,7 @@ export default function AuthProvider({ children }: Children): ReactElement {
         password,
       });
 
-      console.log(res);
+      setUser(res.user);
 
       history.push('/');
     } catch (err) {
@@ -77,7 +79,7 @@ export default function AuthProvider({ children }: Children): ReactElement {
       });
 
       history.push('/login');
-      //   addToast('Verification Mail Sent', { appearance: 'info' });
+      addToast('Verification Mail Sent', { appearance: 'info' });
     } catch (err) {
       throw err;
     }
@@ -86,7 +88,7 @@ export default function AuthProvider({ children }: Children): ReactElement {
   const logout = async () => {
     try {
       setUser(null);
-      setLoading(false);
+      history.push('/');
     } catch (err) {
       throw err;
     }

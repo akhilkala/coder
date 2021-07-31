@@ -1,6 +1,11 @@
 .auth{
     display: flex;
 
+    .error{
+        font-size: 1.4rem;
+        color: orangered;
+    }
+
     aside{
         width: 50%;
         padding: 5rem 3rem;

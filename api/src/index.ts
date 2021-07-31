@@ -11,6 +11,7 @@ import socketHandler from './socket';
 import authRouter from './routes/auth';
 import questionRouter from './routes/question';
 import userRouter from './routes/user';
+import contestRouter from './routes/contests';
 
 const app: Application = express();
 dotenv.config();
@@ -21,6 +22,7 @@ connectDB();
 app.use('/auth', authRouter);
 app.use('/questions', questionRouter);
 app.use('/user', userRouter);
+app.use('/contest', contestRouter);
 
 // TODO: https://www.npmjs.com/package/express-validator
 

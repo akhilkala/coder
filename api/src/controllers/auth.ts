@@ -31,15 +31,7 @@ export const register = route(async (req, res) => {
     password,
   }).save();
 
-  if (!process.env.SECRET) throw new Error('Environment Invalid');
-  const token = jwt.sign({ id: user._id }, process.env.SECRET);
-
-  // await mailer({
-  //   from: 'akhildoesdev@gmail.com',
-  //   to: 'akhildoesdev@gmail.com',
-  //   subject: 'Test',
-  //   text: `http://localhost:1337/auth/validate/${token}`,
-  // });
+  await sendVerificationMail(user._id);
 
   res.status(200).json({
     message: 'User Created Succesfully',
@@ -49,7 +41,7 @@ export const register = route(async (req, res) => {
 export const login = route(async (req, res) => {
   const { email, password } = req.body;
 
-  const user = await User.findOne({ email }).select('+password');
+  const user = await User.findOne({ email }).select('+password').lean();
 
   if (!user) {
     return res.status(401).json({
@@ -61,12 +53,12 @@ export const login = route(async (req, res) => {
 
   if (!check) {
     return res.status(401).json({
-      message: 'Auth failed',
+      message: 'Invalid Credentials',
     });
   }
 
   if (!user.verified) {
-    return res.json({
+    return res.status(400).json({
       message: 'User not verified',
     });
   }
@@ -75,16 +67,17 @@ export const login = route(async (req, res) => {
     throw new Error('Environment Invalid');
 
   const accessToken = jwt.sign({ user: user._id }, process.env.SECRET, {
-    expiresIn: '1m',
-  });
-
-  const refreshToken = jwt.sign({ user: user._id }, process.env.SECRET_2, {
     expiresIn: '7d',
   });
 
+  // const refreshToken = jwt.sign({ user: user._id }, process.env.SECRET_2, {
+  //   expiresIn: '7d',
+  // });
+
   res.status(200).send({
     accessToken,
-    refreshToken,
+    // refreshToken,
+    user: { ...user, password: undefined },
   });
 });
 
@@ -95,3 +88,15 @@ export const verifyUser = route(async (req, res) => {
   //TODO: change
   res.send('Verified');
 });
+
+const sendVerificationMail = (id: string) => {
+  if (!process.env.SECRET) throw new Error('Environment Invalid');
+  const token = jwt.sign({ id }, process.env.SECRET);
+
+  // await mailer({
+  //   from: 'akhildoesdev@gmail.com',
+  //   to: 'akhildoesdev@gmail.com',
+  //   subject: 'Test',
+  //   text: `http://localhost:1337/auth/validate/${token}`,
+  // });
+};

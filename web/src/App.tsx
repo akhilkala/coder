@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import PrivateRoute from './components/PrivateRoute';
+import useReactQuery from './hooks/useReactQuery';
 import ForgotPassword from './pages/auth/ForgotPassword';
 import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
@@ -11,6 +12,8 @@ import Home from './pages/Home';
 // https://www.framer.com/docs/animation/
 
 export default function App(): ReactElement {
+  useReactQuery('/contest');
+
   return (
     <React.Fragment>
       <Switch>

@@ -14,7 +14,13 @@ export const checkUsernameAvailability = route(async (req, res) => {
   });
 });
 
-export const getProfilebyId = route(async (req, res) => {});
+export const getProfilebyUsername = route(async (req, res) => {
+  const { username } = req.params;
+
+  const user = await User.findOne({ username }).lean();
+
+  res.status(200).json({ data: user });
+});
 
 export const updateProfile = route(async (req, res) => {});
 
