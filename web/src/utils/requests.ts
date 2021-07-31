@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const fetcher = axios.create({
-  baseURL: 'http://localhost:5000/',
+  baseURL: process.env.REACT_APP_API_URI,
 });
 
 export const get = async (url: string) => {

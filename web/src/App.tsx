@@ -13,16 +13,14 @@ import Home from './pages/Home';
 export default function App(): ReactElement {
   return (
     <React.Fragment>
-      <Router>
-        <Switch>
-          <Route path="/register" component={Register} />
-          <Route path="/login" component={Login} />
-          <Route path="/forgot-password" component={ForgotPassword} />
-          <Route path="/reset-password" component={ResetPassword} />
-          <PrivateRoute path="/" component={Home} />
-          {/* <Route path="*" component={NotFound} /> */}
-        </Switch>
-      </Router>
+      <Switch>
+        <Route path="/register" component={Register} />
+        <Route path="/login" component={Login} />
+        <Route path="/forgot-password" component={ForgotPassword} />
+        <Route path="/reset-password" component={ResetPassword} />
+        <PrivateRoute path="/" component={Home} />
+        {/* <Route path="*" component={NotFound} /> */}
+      </Switch>
     </React.Fragment>
   );
 }

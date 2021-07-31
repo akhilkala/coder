@@ -43,7 +43,7 @@ export default function Login({}: Props): ReactElement {
           <div className="forgot">
             <span>Forgot your password?</span>
           </div>
-          <Button title="Submit" />
+          <Button>Submit</Button>
           <div className="switch">
             Not a member? <span>Join us!</span>
           </div>

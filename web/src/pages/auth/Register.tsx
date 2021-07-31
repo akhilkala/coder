@@ -89,7 +89,7 @@ export default function Register({}: Props): ReactElement {
               type="password"
             />
           </section>
-          <Button title="Submit" />
+          <Button>Submit</Button>
           <div className="switch">
             Already a member? <span>Log in</span>
           </div>

@@ -1,13 +1,25 @@
 import React, { ReactElement } from 'react';
+import { Link } from 'react-router-dom';
 
 interface Props {
-  title: string;
   loading?: boolean;
+  link?: boolean;
+  to?: string;
+  children?: any;
 }
 
 export default function Button({
-  title,
   loading = false,
+  link = false,
+  to,
+  children,
 }: Props): ReactElement {
-  return <button className="button">{title}</button>;
+  if (link)
+    return (
+      <Link to={to || '/'} className="button">
+        {children}
+      </Link>
+    );
+
+  return <button className="button">{children}</button>;
 }

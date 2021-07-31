@@ -45,7 +45,11 @@ services:
       - ../web:/usr/src/client
     ports:
       - 3000:3000
+    environment:
+      REACT_APP_API_URI: api:5000
 
 networks:
   network:
+    driver: bridge
+  internal:
     driver: bridge
