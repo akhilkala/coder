@@ -1,0 +1,25 @@
+.profile{
+    padding: 3rem;
+
+    .top{
+
+        display: flex;
+        align-items: center;
+        // justify-content: center;
+        img{
+            width: 8rem;
+            border-radius: 100px;
+            margin-right: 2rem;
+        }
+
+        h2{
+            font-size: 3rem;
+            color: #fff;
+        }
+
+        h3{
+            font-size: 2rem;
+            opacity: .8;
+        }
+    }
+}

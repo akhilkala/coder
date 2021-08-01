@@ -19,7 +19,7 @@ export const getProfilebyUsername = route(async (req, res) => {
 
   const user = await User.findOne({ username }).lean();
 
-  res.status(200).json({ data: user });
+  res.status(200).json(user);
 });
 
 export const updateProfile = route(async (req, res) => {});

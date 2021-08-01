@@ -41,7 +41,7 @@ export default function Contests({}: Props): ReactElement {
   return (
     <div className="contests section">
       {/* TODO: change heading fonts */}
-      <h1>Contests</h1>
+      <h1 className="main-heading">Contests</h1>
       <div className="search">
         <i className="fa fa-search"></i>
         <input

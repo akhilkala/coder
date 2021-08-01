@@ -2,6 +2,8 @@ import React, { ReactElement } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import Loading from '../components/Loading';
 import useReactQuery from '../hooks/useReactQuery';
+//TODO: change default image
+import test from '../assets/user.jpg';
 
 interface ProfileRouterProps {
   username: string;
@@ -24,7 +26,13 @@ export default function Profile({
 
   return (
     <div className="profile section">
-      Profile- {JSON.stringify(profileFetcher.data)}
+      <div className="top">
+        <img src={test} alt="" />
+        <div className="name">
+          <h2>{profileFetcher.data.name}</h2>
+          <h3>@{profileFetcher.data.username}</h3>
+        </div>
+      </div>
     </div>
   );
 }

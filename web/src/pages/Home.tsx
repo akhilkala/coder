@@ -35,9 +35,15 @@ export default function Home({}: Props): ReactElement {
         <NavLink activeClassName="link-active" to="/settings">
           <i className="fas fa-cog"></i>Settings
         </NavLink>
-        <button onClick={auth?.logout} className="logout">
-          <i className="fas fa-sign-out-alt"></i>Logout
-        </button>
+
+        <div className="bottom">
+          <button className="companion">
+            <i className="fas fa-puzzle-piece"></i> Download Companion
+          </button>
+          <button onClick={auth?.logout} className="logout">
+            <i className="fas fa-sign-out-alt"></i>Logout
+          </button>
+        </div>
       </nav>
       <main>
         <Switch>
