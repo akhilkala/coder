@@ -12,7 +12,7 @@ import Home from './pages/Home';
 // https://www.framer.com/docs/animation/
 
 export default function App(): ReactElement {
-  useReactQuery('/contest');
+  useReactQuery(`/contest`);
 
   return (
     <React.Fragment>

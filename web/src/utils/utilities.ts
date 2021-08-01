@@ -1,3 +1,5 @@
+import codeforces from '../assets/logos/codeforces.png';
+
 export const lottieOptions = (animation: any, loop = true) => ({
   loop,
   autoplay: true,
@@ -6,3 +8,8 @@ export const lottieOptions = (animation: any, loop = true) => ({
     preserveAspectRatio: 'xMidYMid slice',
   },
 });
+
+//TODO: unimplemented
+export const logos = (site: string) => {
+  return codeforces;
+};

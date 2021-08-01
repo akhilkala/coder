@@ -36,6 +36,7 @@ const userSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  //TODO: Separate model lol
   solveList: [
     {
       type: mongoose.Schema.Types.ObjectId,

@@ -1,6 +1,5 @@
 import express, { Application, NextFunction, Request, Response } from 'express';
 import dotenv from 'dotenv';
-import cors from 'cors';
 import connectDB from './config/db';
 import { CustomError } from './errors';
 
@@ -15,9 +14,13 @@ import contestRouter from './routes/contests';
 
 const app: Application = express();
 dotenv.config();
-app.use(cors());
 app.use(express.json());
 connectDB();
+
+app.use((req, res, next) => {
+  req.url = req.url.slice(4);
+  next();
+});
 
 app.use('/auth', authRouter);
 app.use('/questions', questionRouter);

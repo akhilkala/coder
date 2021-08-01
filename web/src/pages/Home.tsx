@@ -21,7 +21,7 @@ export default function Home({}: Props): ReactElement {
           <i className="fas fa-home"></i>Home
         </NavLink>
         <NavLink activeClassName="link-active" to="/contests">
-          <i className="fas fa-calendar"></i>Contests
+          <i className="fas fa-book-open"></i>Contests
         </NavLink>
         <NavLink
           activeClassName="link-active"

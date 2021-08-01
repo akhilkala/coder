@@ -23,7 +23,7 @@ export default function Profile({
   }
 
   return (
-    <div className="profile page">
+    <div className="profile section">
       Profile- {JSON.stringify(profileFetcher.data)}
     </div>
   );

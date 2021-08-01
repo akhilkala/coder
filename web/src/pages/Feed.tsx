@@ -4,7 +4,7 @@ interface Props {}
 
 export default function Feed({}: Props): ReactElement {
   return (
-    <div className="feed page">
+    <div className="feed section">
       <h1>Feed</h1>
     </div>
   );

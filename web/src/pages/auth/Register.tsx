@@ -13,7 +13,7 @@ interface Props {}
 
 export default function Register({}: Props): ReactElement {
   const name = useInputState();
-  //TODO: name and username checks
+  //TODO: name and username length checks
   const username = useInputState();
   const email = useInputState();
   const password = useInputState();

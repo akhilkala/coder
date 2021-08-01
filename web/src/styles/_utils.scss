@@ -2,6 +2,11 @@
     min-height: 100vh;
 }
 
+.section{
+    max-height: 100vh;
+    overflow: auto;
+}
+
 .input{
     margin: 2rem 0;
 
