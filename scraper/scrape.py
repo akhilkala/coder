@@ -30,9 +30,8 @@ class Scraper:
         file.write(jsonString)
         file.close()
 
-test = Scraper()
-test.scrape_leetcode()
-test.close_driver()
+# test = Scraper()
+# test.scrape_leetcode()
 
 # driver.execute_script("window.scrollTo(0, 9999999999999999999999)")
 
@@ -73,3 +72,4 @@ test.close_driver()
 #                 check_height = self.browser.execute_script("return document.body.scrollHeight;")
 #             except TimeoutException:
 #                 break
+
