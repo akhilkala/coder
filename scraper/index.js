@@ -11,6 +11,8 @@ const seed = require('./seed');
       useUnifiedTopology: true,
     });
 
+    console.log('Connected to MongoDB');
+
     const check = await Problem.findOne({});
     if (!check) seed();
     process.exit(0);

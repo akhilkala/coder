@@ -9,7 +9,11 @@ module.exports = async () => {
   while ((dirent = dir.readSync()) !== null) {
     pathName = path.join(__dirname, 'problems', dirent.name);
     const problems = JSON.parse(fs.readFileSync(pathName, 'utf-8'));
-    await Problem.create(problems);
-    console.log(`${dirent.name} seeded`);
+    try {
+      await Problem.create(problems);
+      console.log(`${dirent.name} seeded`);
+    } catch (err) {
+      throw err;
+    }
   }
 };

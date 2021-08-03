@@ -10,17 +10,11 @@ import socketHandler from './socket';
 import authRouter from './routes/auth';
 import userRouter from './routes/user';
 import contestRouter from './routes/contests';
-import Problem from './models/Problem';
 
 const app: Application = express();
 dotenv.config();
 app.use(express.json());
 connectDB();
-
-app.get('/', async (req, res, next) => {
-  const prob = await Problem.find({});
-  res.send(prob);
-});
 
 app.use((req, res, next) => {
   req.url = req.url.slice(4);
