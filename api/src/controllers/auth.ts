@@ -43,17 +43,11 @@ export const login = route(async (req, res) => {
 
   const user = await User.findOne({ email }).select('+password').lean();
 
-  if (!user) {
-    return res.status(401).json({
-      message: 'User does not exist',
-    });
-  }
-
   const check = await bcrypt.compare(password, user.password);
 
-  if (!check) {
+  if (!check || !user) {
     return res.status(401).json({
-      message: 'Invalid Credentials',
+      message: 'Email or Password is Incorrect',
     });
   }
 

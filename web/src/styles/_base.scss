@@ -77,3 +77,30 @@ button {
     margin-top: 2.5rem;
   }
 }
+
+.not-found{
+  font-size: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  
+  h1{
+    color: $primary;
+    display: flex;
+    align-items: center;
+    font-weight: normal;
+    border-right: 1px solid #fff6;
+    padding-right: 2rem;
+  }
+
+  span{
+    padding-left: 2rem;
+
+  }
+
+  img{
+    width: 4rem;
+    margin: 0 .5rem;
+  }
+}
