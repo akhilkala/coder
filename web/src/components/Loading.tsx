@@ -13,6 +13,12 @@ export default function Loading({
   height = 250,
 }: Props): ReactElement {
   return (
-    <Lottie options={lottieOptions(animation)} height={height} width={width} />
+    <div style={{ opacity: 0.7 }}>
+      <Lottie
+        options={lottieOptions(animation)}
+        height={height}
+        width={width}
+      />
+    </div>
   );
 }

@@ -33,6 +33,12 @@ export default function Profile({
           <h3>@{profileFetcher.data.username}</h3>
         </div>
       </div>
+      <div className="description">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reprehenderit
+        veniam rerum quis perspiciatis officia delectus obcaecati, qui provident
+        quae pariatur accusamus placeat tenetur sint quo nulla voluptatem
+        dolorum aliquam iusto!
+      </div>
     </div>
   );
 }

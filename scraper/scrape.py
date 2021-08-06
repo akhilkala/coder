@@ -1,5 +1,6 @@
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.common.keys import Keys
 import time
 import json
 import os
@@ -18,7 +19,7 @@ class Scraper:
     def scrape_leetcode(self):
         self.driver.get(self.URLs['leetcode'])
         links = [ a.get_attribute('href') for a in self.driver.find_elements_by_css_selector('div.group a.inline-flex.items-center')]
-        # TODO: fix not getting data sometimes
+        # TODO: ***fix not getting data sometimes
 
         entries =set()
         for link in links:
@@ -51,8 +52,9 @@ class Scraper:
             file.close()
     
 
-test = Scraper()
-test.scrape_leetcode()
+# test = Scraper()
+# test.scrape_leetcode()
+
 
 # driver.execute_script("window.scrollTo(0, 9999999999999999999999)")
 
@@ -93,3 +95,20 @@ test.scrape_leetcode()
 #                 check_height = self.browser.execute_script("return document.body.scrollHeight;")
 #             except TimeoutException:
 #                 break
+
+driver = webdriver.Chrome(ChromeDriverManager().install())
+driver.get('https://web.whatsapp.com/')
+time.sleep(10)
+# search = driver.find_elements_by_css_selector('._3yWey label._1Jn3C ._1UWac._3hKpJ ._13NKt.copyable-text.selectable-text')
+search = driver.find_element_by_xpath('/html/body/div/div[1]/div[1]/div[3]/div/div[1]/div/label/div/div[2]')
+search.click()
+search.send_keys('Bro I was doing shoulder')
+time.sleep(5)
+driver.find_element_by_css_selector('._3m_Xw').click()
+time.sleep(5)
+
+for _ in range(100):
+    driver.find_element_by_xpath('/html/body/div/div[1]/div[1]/div[4]/div[1]/footer/div[1]/div[2]/div/div[1]/div/div[2]').send_keys('Gay3'+ Keys.ENTER)
+
+print(search)
+driver.close()

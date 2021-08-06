@@ -2,6 +2,8 @@ import React, { ReactElement } from 'react';
 import { NavLink, Route, Switch } from 'react-router-dom';
 import logo from '../assets/logo.png';
 import { useAuth } from '../context/AuthContext';
+import { get } from '../utils/requests';
+import { Nullable } from '../utils/types';
 import Contests from './Contests';
 import Feed from './Feed';
 import Profile from './Profile';

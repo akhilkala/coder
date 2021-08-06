@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const Problem = require('./Problem');
 
+// TODO: Seeder not working
 module.exports = async () => {
   const dir = fs.opendirSync('./problems');
   let dirent;
