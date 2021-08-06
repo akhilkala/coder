@@ -8,6 +8,7 @@ import Button from '../../components/Button';
 
 import { lottieOptions } from '../../utils/utilities';
 import { useToasts } from 'react-toast-notifications';
+import { Link } from 'react-router-dom';
 
 interface Props {}
 
@@ -31,6 +32,7 @@ export default function Login({}: Props): ReactElement {
 
   return (
     <div className="auth auth--login page">
+      {/* TODO: Render aside only once */}
       <aside className="left">
         <div className="lottie">
           <Lottie options={lottieOptions(animation)} height={400} width={400} />
@@ -50,7 +52,7 @@ export default function Login({}: Props): ReactElement {
           </div>
           <Button>Submit</Button>
           <div className="switch">
-            Not a member? <span>Join us!</span>
+            Not a member? <Link to="/register">Join us!</Link>
           </div>
         </form>
       </aside>

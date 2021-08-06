@@ -8,6 +8,7 @@ import Button from '../../components/Button';
 
 import { lottieOptions } from '../../utils/utilities';
 import { get } from '../../utils/requests';
+import { Link } from 'react-router-dom';
 
 interface Props {}
 
@@ -88,10 +89,11 @@ export default function Register({}: Props): ReactElement {
               name="Confirm Password"
               type="password"
             />
+            {/* TODO: Implement captcha */}
           </section>
           <Button>Submit</Button>
           <div className="switch">
-            Already a member? <span>Log in</span>
+            Already a member? <Link to="/login">Login</Link>
           </div>
         </form>
       </aside>

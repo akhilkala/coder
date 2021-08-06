@@ -160,11 +160,10 @@
 
         .shuffle{
             font-size: 1.2rem;
-            text-align: right;
             cursor: pointer;
             margin: 1rem 0;
-            margin-right: 1.5rem;
             transition: .2s all;
+            width: max-content;
 
             &:hover{
                 color: $primary;
