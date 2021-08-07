@@ -22,7 +22,17 @@ export default function App(): ReactElement {
         <Route path="/login" component={Login} />
         <Route path="/forgot-password" component={ForgotPassword} />
         <Route path="/reset-password" component={ResetPassword} />
-        <PrivateRoute exact path="/" component={Home} />
+        <PrivateRoute
+          exact
+          path={[
+            '/',
+            '/settings',
+            '/social',
+            '/profile/:username',
+            '/contests',
+          ]}
+          component={Home}
+        />
         <Route path="*" component={NotFound} />
       </Switch>
     </React.Fragment>
