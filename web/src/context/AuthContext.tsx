@@ -44,6 +44,11 @@ export default function AuthProvider({ children }: Children): ReactElement {
   const { addToast } = useToasts();
 
   useEffect(() => {
+    const token = localStorage.getItem('test-token');
+    if (token) {
+      const user = jwt(token);
+      setUser(user);
+    }
     setLoading(false);
   });
 
@@ -57,6 +62,7 @@ export default function AuthProvider({ children }: Children): ReactElement {
 
       const user = jwt(res.token);
       setUser(user);
+      localStorage.setItem('test-token', res.token);
 
       history.push('/');
     } catch (err) {
@@ -89,6 +95,7 @@ export default function AuthProvider({ children }: Children): ReactElement {
     try {
       setUser(null);
       history.push('/');
+      localStorage.removeItem('test-token');
     } catch (err) {
       throw err;
     }

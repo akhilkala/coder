@@ -7,20 +7,11 @@ require('dotenv').config();
 export const register = route(async (req, res) => {
   const { name, username, email, password } = req.body;
 
-  const [exisitngUser, exisitngUsername] = await Promise.all([
-    User.findOne({ email }),
-    User.findOne({ username }),
-  ]);
+  const exisitngUser = await User.findOne({ email });
 
   if (exisitngUser) {
     return res.status(401).json({
-      message: 'User already Exists',
-    });
-  }
-
-  if (exisitngUsername) {
-    return res.status(401).json({
-      message: 'Username already in use',
+      message: 'Email is already in use',
     });
   }
 
@@ -43,9 +34,15 @@ export const login = route(async (req, res) => {
 
   const user = await User.findOne({ email }).select('+password').lean();
 
+  if (!user) {
+    return res.status(401).json({
+      message: 'Email or Password is Incorrect',
+    });
+  }
+
   const check = await bcrypt.compare(password, user.password);
 
-  if (!check || !user) {
+  if (!check) {
     return res.status(401).json({
       message: 'Email or Password is Incorrect',
     });
