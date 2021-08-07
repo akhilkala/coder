@@ -22,6 +22,7 @@ app.use((req, res, next) => {
   next();
 });
 
+//TODO: add protect middleware
 app.use('/auth', authRouter);
 app.use('/user', userRouter);
 app.use('/contest', contestRouter);

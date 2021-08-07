@@ -2,6 +2,47 @@ html {
   scroll-behavior: smooth;
 }
 
+:root {
+
+  @media (max-width: 75em) {
+      //1200px
+      font-size: 14px;
+    }
+
+
+  @media (max-width: 56.25em) {
+      //900px
+      font-size: 12px;
+        }
+
+  @media (max-width: 47.5em) {
+    //760px
+    font-size: 10px;
+  }
+
+
+  @media (min-width: 131.25em) {
+    //2100px
+    font-size: 18px;
+  }
+
+}
+
+::-webkit-scrollbar {
+  width: 9px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #75757588;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  border-radius: 2px;
+  background-color: #ebf7fd;
+}
+
 *,
 *::after,
 *::before {
