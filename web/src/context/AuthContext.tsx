@@ -10,7 +10,6 @@ import { Nullable, User, Children } from '../utils/types';
 //TODO: remove unnecsary imports everywhere
 import { get, post } from '../utils/requests';
 import { useHistory, useLocation } from 'react-router-dom';
-import useToggle from '../hooks/useToggle';
 import { useToasts } from 'react-toast-notifications';
 import jwt from 'jwt-decode';
 
@@ -38,7 +37,6 @@ export const useAuth = () => {
 
 export default function AuthProvider({ children }: Children): ReactElement {
   const [user, setUser] = useState<Nullable<User>>(null);
-  // TODO: change to useToggle
   const [loading, setLoading] = useState<Boolean>(true);
 
   const history = useHistory();

@@ -16,7 +16,6 @@ export default function PrivateRoute({
   ...rest
 }: Props): ReactElement {
   const auth = useAuth();
-
   const location = useLocation();
 
   return (
@@ -32,7 +31,9 @@ export default function PrivateRoute({
                 <Loading />
               </div>
             );
-          return <Landing />;
+
+          if (location.pathname === '/') return <Landing />;
+          else return <Redirect to="/login" />;
         }
       }}
     />

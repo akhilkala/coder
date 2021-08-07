@@ -76,7 +76,7 @@ function Contest(contest: IContest): ReactElement {
       {/* {JSON.stringify(contest)} */}
       <div className="contest">
         <img src={logos(contest.site)} alt="" />
-        <a href={contest.url}>
+        <a target="_blank" rel="noreferrer noopener" href={contest.url}>
           <div className="title">
             {contest.name}
             <i className="fas fa-link"></i>

@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react';
 import { NavLink, Route, Switch } from 'react-router-dom';
 import logo from '../assets/logo.png';
+import CompanionModal from '../components/CompanionModal';
 import { useAuth } from '../context/AuthContext';
 import { get } from '../utils/requests';
 import { Nullable } from '../utils/types';
@@ -14,6 +15,8 @@ interface Props {}
 
 export default function Home({}: Props): ReactElement {
   const auth = useAuth();
+
+  const [modalOpen, setModalOpen] = React.useState(false);
 
   return (
     <div className="home page">
@@ -37,10 +40,13 @@ export default function Home({}: Props): ReactElement {
         <NavLink activeClassName="link-active" to="/settings">
           <i className="fas fa-cog"></i>Settings
         </NavLink>
-
+        <CompanionModal
+          open={modalOpen}
+          closeHandler={() => setModalOpen(false)}
+        />
         <div className="bottom">
-          <button className="companion">
-            <i className="fas fa-puzzle-piece"></i> Download Companion
+          <button onClick={() => setModalOpen(true)} className="companion">
+            <i className="fas fa-puzzle-piece"></i>Companion
           </button>
           <button onClick={auth?.logout} className="logout">
             <i className="fas fa-sign-out-alt"></i>Logout
