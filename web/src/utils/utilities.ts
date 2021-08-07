@@ -13,3 +13,10 @@ export const lottieOptions = (animation: any, loop = true) => ({
 export const logos = (site: string) => {
   return codeforces;
 };
+
+export const getFormatedDate = (date: string) => {
+  const formated = new Date(date).toString();
+  const year = formated.split(' ').slice(1, 4)[2];
+
+  return formated.split(' ').slice(1, 3).reverse().join(' ') + ' ' + year;
+};

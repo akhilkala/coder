@@ -14,7 +14,7 @@ const seed = require('./seed');
     console.log('Connected to MongoDB');
 
     const check = await Problem.findOne({});
-    if (!check) seed();
+    if (!check) await seed();
     process.exit(0);
   } catch (err) {
     console.log('Error: ' + err);

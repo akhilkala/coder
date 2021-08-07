@@ -21,12 +21,38 @@
             font-size: 2rem;
             opacity: .8;
         }
+
+        border-bottom: 1px solid #fff3;
+        padding-bottom: 1rem;
     }
 
+    .since{
+        margin: 1rem 0;
+        font-size: 1.25rem;
+        font-weight: bold;
+        opacity: .75;
+    }
 
     .description{
-        margin-top: 2rem;
         font-size: 1.25rem;
         width: 70%;
+    }
+
+    .buttons{
+        margin-top: 1rem;
+        .button{
+            i{
+                margin-right: .5rem;
+            }
+            margin-right: 1rem;
+
+        
+        }
+
+        .edit{
+            margin-right: 0;
+            padding: .655rem 1.5rem;
+
+        }
     }
 }

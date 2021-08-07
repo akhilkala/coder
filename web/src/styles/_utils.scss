@@ -94,4 +94,14 @@
     background-color: #fff;
         color: #000;
     }
+
+    &--secondary{
+        border :1px solid $text-color;
+        color: $text-color !important;;
+        background-color: inherit;
+
+        &:hover{
+            background-color: #fff1;
+            }
+    }
 }
