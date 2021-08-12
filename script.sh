@@ -11,5 +11,3 @@ stop(){
 }
 
 "${@:-default}"
-
-# TODO: take care of env before making repo public
