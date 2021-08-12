@@ -1,6 +1,6 @@
 # Coder 
 
-Coder is a competitive coding pseudo-social media platform for aspiring coders can learn together. The end goal is to bring coder to all platforms including web, mobile and also have a browser extension. 
+Coder is a competitive coding pseudo-social media platform. The end goal is to bring coder to all platforms including web, mobile and also have a browser extension. 
 
 ### Features
 * Daily random problems
@@ -10,7 +10,7 @@ Coder is a competitive coding pseudo-social media platform for aspiring coders c
 ### Steps to run locally
 
 * Clone the repo with `git clone https://github.com/akhilkala/coder.git`
-* Then from the root of the protect run `bash script.sh` (Make sure you have docker installed)
+* Then from the root of the protect run `bash script.sh start` (Make sure you have docker installed)
 * Scrape questions with `cd scraper && python scrape.py`
 * Seed the databse with `node scraper/index.js`
 * Visit `http://localhost:3000/` to get started
