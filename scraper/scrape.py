@@ -52,8 +52,8 @@ class Scraper:
             file.close()
     
 
-# test = Scraper()
-# test.scrape_leetcode()
+test = Scraper()
+test.scrape_leetcode()
 
 
 # driver.execute_script("window.scrollTo(0, 9999999999999999999999)")
