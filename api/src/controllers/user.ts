@@ -28,6 +28,20 @@ export const addQuestionToList = route(async (req, res) => {});
 
 export const removeQuestionFromList = route(async (req, res) => {});
 
-export const addFreind = route(async (req, res) => {});
+export const addFreind = route(async (req, res) => {
+  const { id } = req.params;
+
+  await User.updateOne(
+    { id: req.user._id },
+    {
+      $push: {
+        friendRequests: id,
+      },
+    }
+  );
+  res.status(200).json({
+    success: true,
+  });
+});
 
 export const removeFreind = route(async (req, res) => {});

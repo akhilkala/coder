@@ -1,14 +1,8 @@
 import { NextFunction, Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
-import { IUser } from '../models/User';
 require('dotenv').config();
 
-interface Req extends Request {
-  //   user: IUser;
-  user: any;
-}
-
-export default (req: Req, res: Response, next: NextFunction) => {
+export default (req: Request, res: Response, next: NextFunction) => {
   try {
     const token = req.headers?.authorization?.split(' ')[1] || '';
 

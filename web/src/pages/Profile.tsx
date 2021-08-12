@@ -7,6 +7,7 @@ import test from '../assets/user.jpg';
 import Button from '../components/Button';
 import { useAuth } from '../context/AuthContext';
 import { getFormatedDate } from '../utils/utilities';
+import { patch } from '../utils/requests';
 
 interface ProfileRouterProps {
   username: string;
@@ -52,13 +53,16 @@ export default function Profile({
         dolorum aliquam iusto!
       </div>
       <div className="buttons">
-        {!isCurrentUserProfile() ||
-          (true && (
-            <Button>
-              <i className="fa fa-plus"></i>
-              Add Friend
-            </Button>
-          ))}
+        {!isCurrentUserProfile() && (
+          <Button
+            onClick={async () => {
+              await patch(`/user/add-friend/${profileFetcher.data._id}`);
+            }}
+          >
+            <i className="fa fa-plus"></i>
+            Add Friend
+          </Button>
+        )}
         {isCurrentUserProfile() && (
           <Button className="edit" secondary>
             Edit Profile

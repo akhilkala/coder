@@ -2,6 +2,7 @@ import express, { Application, NextFunction, Request, Response } from 'express';
 import dotenv from 'dotenv';
 import connectDB from './config/db';
 import { CustomError } from './errors';
+//TODO: complete implementing custom errors
 
 const socketio = require('socket.io');
 import { Socket } from 'socket.io';
@@ -53,3 +54,12 @@ const io = socketio(httpServer, {
 });
 
 io.on('connection', (socket: Socket) => socketHandler(socket, io));
+
+declare global {
+  namespace Express {
+    interface Request {
+      //TODO: change this any
+      user?: any;
+    }
+  }
+}

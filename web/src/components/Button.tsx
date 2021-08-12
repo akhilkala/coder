@@ -9,6 +9,7 @@ interface Props {
   children?: any;
   secondary?: boolean;
   className?: string;
+  onClick?: () => any;
 }
 
 export default function Button({
@@ -18,6 +19,7 @@ export default function Button({
   children,
   secondary,
   className,
+  onClick,
 }: Props): ReactElement {
   if (link)
     return (
@@ -28,6 +30,7 @@ export default function Button({
           { 'button--secondary': secondary },
           className,
         ])}
+        onClick={onClick}
       >
         {children}
       </Link>
@@ -35,6 +38,7 @@ export default function Button({
 
   return (
     <button
+      onClick={onClick}
       className={cn(['button', { 'button--secondary': secondary }, className])}
     >
       {children}

@@ -50,7 +50,7 @@ export default function AuthProvider({ children }: Children): ReactElement {
       setUser(user);
     }
     setLoading(false);
-  });
+  }, []);
 
   const login = async (email: string, password: string) => {
     // setLoading(true);
