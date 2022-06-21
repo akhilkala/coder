@@ -1,6 +1,6 @@
-import React, { ReactElement } from 'react';
-import { Link } from 'react-router-dom';
-import logo from '../assets/logo.png';
+import React, { ReactElement } from "react";
+import { Link } from "react-router-dom";
+import logo from "../assets/logo.png";
 
 interface Props {}
 

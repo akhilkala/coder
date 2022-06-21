@@ -1,5 +1,5 @@
-import mongoose, { Document } from 'mongoose';
-import bcrypt from 'bcrypt';
+import mongoose, { Document } from "mongoose";
+import bcrypt from "bcrypt";
 
 export interface IUser extends Document {
   name: string;
@@ -40,7 +40,7 @@ const userSchema = new mongoose.Schema({
   solveList: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Question',
+      ref: "Problem",
     },
   ],
   bio: {
@@ -54,23 +54,29 @@ const userSchema = new mongoose.Schema({
     type: Date,
     default: Date.now(),
   },
-  friendRequests: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
-    },
-  ],
-  friends: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
-    },
-  ],
+  friendRequests: {
+    type: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
+    default: [],
+  },
+  friends: {
+    type: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
+    default: [],
+  },
 });
 
-userSchema.pre<IUser>('save', async function (next) {
-  if (!this.isModified('password')) next();
+userSchema.pre<IUser>("save", async function (next) {
+  if (!this.isModified("password")) next();
   this.password = await bcrypt.hash(this.password, 10);
 });
 
-export default mongoose.model<IUser>('User', userSchema);
+export default mongoose.model<IUser>("User", userSchema);

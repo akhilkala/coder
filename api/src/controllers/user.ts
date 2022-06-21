@@ -1,11 +1,11 @@
-import { route } from '../config/utils';
-import User from '../models/User';
+import { route } from "../config/utils";
+import User from "../models/User";
 
 export const checkUsernameAvailability = route(async (req, res) => {
   const { username } = req.params;
 
   // TODO: Change
-  if (!username) throw new Error('Illegal req');
+  if (!username) throw new Error("Illegal req");
 
   const existingUser = await User.findOne({ username });
 

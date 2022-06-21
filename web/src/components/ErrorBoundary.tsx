@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import Lottie from 'react-lottie';
-import animation from '../assets/animations/error.json';
-import { lottieOptions } from '../utils/utilities';
-import Button from './Button';
+import React, { Component } from "react";
+import Lottie from "react-lottie";
+import animation from "../assets/animations/error.json";
+import { lottieOptions } from "../utils/utilities";
+import Button from "./Button";
 
 export default class ErrorBoundary extends Component {
   state = {

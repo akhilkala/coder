@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState } from "react";
 
 export interface InputState {
   value: string;
@@ -7,7 +7,7 @@ export interface InputState {
 }
 
 const useInputState = (init?: string): InputState => {
-  const initialState = init || '';
+  const initialState = init || "";
 
   const [value, setValue] = useState<string>(initialState);
 

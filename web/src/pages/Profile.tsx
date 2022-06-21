@@ -1,13 +1,13 @@
-import React, { ReactElement } from 'react';
-import { RouteComponentProps } from 'react-router-dom';
-import Loading from '../components/Loading';
-import useReactQuery from '../hooks/useReactQuery';
+import React, { ReactElement } from "react";
+import { RouteComponentProps } from "react-router-dom";
+import Loading from "../components/Loading";
+import useReactQuery from "../hooks/useReactQuery";
 //TODO: change default image
-import test from '../assets/user.jpg';
-import Button from '../components/Button';
-import { useAuth } from '../context/AuthContext';
-import { getFormatedDate } from '../utils/utilities';
-import { patch } from '../utils/requests';
+import test from "../assets/user.jpg";
+import Button from "../components/Button";
+import { useAuth } from "../context/AuthContext";
+import { getFormatedDate } from "../utils/utilities";
+import { patch } from "../utils/requests";
 
 interface ProfileRouterProps {
   username: string;
@@ -24,6 +24,11 @@ export default function Profile({
 
   const isCurrentUserProfile = () =>
     match.params.username === auth?.user?.username;
+
+  const handleAddFriend = async () => {
+    const res = await patch(`/user/add-friend/${profileFetcher.data._id}`);
+    console.log(res);
+  };
 
   if (profileFetcher.isLoading) {
     return (
@@ -54,11 +59,7 @@ export default function Profile({
       </div>
       <div className="buttons">
         {!isCurrentUserProfile() && (
-          <Button
-            onClick={async () => {
-              await patch(`/user/add-friend/${profileFetcher.data._id}`);
-            }}
-          >
+          <Button onClick={handleAddFriend}>
             <i className="fa fa-plus"></i>
             Add Friend
           </Button>
